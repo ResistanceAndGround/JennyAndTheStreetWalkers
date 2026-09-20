@@ -127,3 +127,4 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
 .booking-live-photo{animation:booking-photo-arrive 1s ease-out both;box-shadow:0 24px 60px #0005,0 0 45px #d5ab6810;transition:box-shadow .45s ease}
 @keyframes booking-photo-arrive{from{opacity:.82;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @media(hover:hover){.booking-live-photo:hover{box-shadow:0 28px 65px #0006,0 0 50px #d5ab681a}}
+.booking-summary{max-width:60ch;color:var(--cream)}

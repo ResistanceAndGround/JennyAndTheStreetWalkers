@@ -28,7 +28,7 @@ Original PNGs and PDFs are retained. WebP files are optimized delivery assets; s
 
 ## Hosting
 
-Existing GitHub Pages preview: https://sevenfiresburning.github.io/JennyAndTheStreetWalkers/
+Existing GitHub Pages preview: https://resistanceandground.github.io/JennyAndTheStreetWalkers/
 
 GitHub reports Pages enabled; all five existing page URLs respond. No local Actions workflow, CNAME or package build exists. The account's exact Pages source setting was not inspected. Keep its existing configuration. Relative links work under the repository subpath and a future root domain.
 
@@ -54,10 +54,14 @@ Mailing-list capture does not send newsletters. Request Removal opens the suppli
 - Confirm the independent hosting project, form notification recipient, newsletter/removal process, band bio/lineup, prices, stock and shipping in Square.
 - After approval, configure forms as above and test actual receipt. No real submissions were made during the audit.
 - Replace the verified GitHub Pages base URL in all five pages' og:url, og:image and twitter:image metadata with the final HTTPS domain. Keep the intentional band artwork.
-- Add final-domain canonical URLs, sitemap.xml and robots.txt when the domain is known. They are intentionally absent now; no production domain was invented.
+- Canonical URLs, structured data and sitemap.xml currently use the GitHub Pages URL. Before domain launch, update all absolute URLs to the final HTTPS domain and regenerate the sitemap. Add robots.txt at the domain root with its sitemap location; a robots.txt inside the GitHub project subpath has no crawler authority.
 - Confirm the sharing image loads publicly after push; it exists locally but is not yet uploaded.
 - Confirm TLS, apex/www preference and redirects. No DNS or domain changes were made.
 - Test YouTube playback in a normal browser, current/past Bandsintown dates, all Square options and inventory, PDF downloads, booking and signup confirmation.
 - Before pushing, check whether any Netlify auto-deploy integration is attached. Keep builds stopped/disconnected while conserving credits. A push can update GitHub Pages and any connected host.
 
 See AUDIT.md for findings and verification limits.
+
+## Booking-focused SEO update
+
+See SEO-CLIENT-QUESTIONS.md for client confirmations and launch work. Titles, descriptions, canonical URLs, sharing metadata, MusicGroup/WebPage structured data and sitemap.xml use the current public preview URL. No rankings, rich results or indexing are guaranteed. Booking links lead to the contact form. The owner will configure the mail service when deploying to the final domain; form delivery remains disabled for the preview. No domain, Search Console account or analytics service was configured.

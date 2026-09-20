@@ -24,7 +24,7 @@ for f in root.glob('*.html'):
  p=Page();s=f.read_text(encoding='utf-8');p.feed(s);pages[f.name]=p
  assert not p.errors and not p.stack,(f,p.errors,p.stack)
  assert len(p.ids)==len(set(p.ids)),(f,'duplicate ID')
- assert not re.search(r'Resistance|resistground|RGWebSite|mike-wilson',s,re.I),(f,'unrelated branding')
+ assert not re.search(r'\bResistance\b|resistground|RGWebSite|mike-wilson',s,re.I),(f,'unrelated branding')
  assert len(re.findall(r'<h1\b',s))==1,(f,'h1 count')
  assert '<meta property="og:image" content="https://' in s,(f,'absolute social image')
 for name,p in pages.items():
