@@ -1,0 +1,15 @@
+# Review from the independent repository only.
+Set-Location -LiteralPath 'C:\Users\resis\OneDrive\Desktop\J&S\Jenny-The-StreetWalkers'
+git status --short
+git diff --stat
+git diff --check
+git diff
+py tools/check_site.py
+# After reviewing the changes:
+git add README.md AUDIT.md booking-form.js booking-showcase.js contact.html index.html mailing-list.js media.html merch.html release.css shows.html site-config.js site-forms.js tools/check_site.py band.webp stage.webp art/*.webp art/social-preview.jpg
+git diff --cached --stat
+git diff --cached --check
+git commit -m "Prepare Jenny site for launch with resilient forms and accessible showcase"
+# Only after confirming no active Netlify auto-deploy is connected:
+git push origin main
+git status --short
