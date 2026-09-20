@@ -1,0 +1,29 @@
+ AUDIT.md                       |  76 [32m+++++++++++++++++++++++++++++++++++++++++[m
+ README.md                      |  65 [32m+++++++++++++++++++++++++++++++[m[31m----[m
+ REVIEW-COMMANDS.ps1.txt        |  15 [32m++++++++[m
+ art/booking-live-crowd.webp    | Bin [31m0[m -> [32m41350[m bytes
+ art/calendar-stage.webp        | Bin [31m0[m -> [32m136658[m bytes
+ art/earrings-slide5.webp       | Bin [31m0[m -> [32m272410[m bytes
+ art/earrings.webp              | Bin [31m0[m -> [32m190608[m bytes
+ art/koozie.webp                | Bin [31m0[m -> [32m167466[m bytes
+ art/logo.webp                  | Bin [31m0[m -> [32m432968[m bytes
+ art/meet-the-band-live.webp    | Bin [31m0[m -> [32m129096[m bytes
+ art/poster.webp                | Bin [31m0[m -> [32m263556[m bytes
+ art/social-preview.jpg         | Bin [31m0[m -> [32m111315[m bytes
+ art/t-shirt.webp               | Bin [31m0[m -> [32m77726[m bytes
+ art/wear-the-night-slide6.webp | Bin [31m0[m -> [32m288908[m bytes
+ band.webp                      | Bin [31m0[m -> [32m287388[m bytes
+ booking-form.js                |  26 [32m+[m[31m-------------[m
+ booking-showcase.js            |   1 [32m+[m
+ contact.html                   |  24 [32m+++++++++[m[31m----[m
+ index.html                     |  28 [32m++++++++++[m[31m-----[m
+ mailing-list.js                |   2 [32m+[m[31m-[m
+ media.html                     |  18 [32m+++++++[m[31m---[m
+ merch.html                     |  20 [32m++++++++[m[31m---[m
+ release.css                    |  24 [32m+++++++++[m[31m----[m
+ shows.html                     |  20 [32m++++++++[m[31m---[m
+ site-config.js                 |   3 [32m++[m
+ site-forms.js                  |  35 [32m+++++++++++++++++++[m
+ stage.webp                     | Bin [31m0[m -> [32m144268[m bytes
+ tools/check_site.py            |  43 [32m+++++++++++++++++++++++[m
+ 28 files changed, 331 insertions(+), 69 deletions(-)
