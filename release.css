@@ -75,18 +75,55 @@ footer{display:flex;align-items:center;flex-wrap:wrap;gap:25px;padding:30px 5.5%
 
 .media-video{aspect-ratio:16/9;width:100%;background:#000;border:1px solid var(--line);margin-top:35px}.media-video iframe{display:block;width:100%;height:100%;border:0}.video-fallback{margin:14px 0 40px}
 
-/* The booking page opens like a cabaret stage, then settles into a still photograph. */
-.booking-showcase{position:relative;isolation:isolate;max-width:1120px;margin:0 auto 35px;padding:28px 46px 45px;overflow:hidden}.booking-showcase-glow{position:absolute;inset:-12%;z-index:-2;background:url('art/booking-live-crowd.webp') center/cover no-repeat;filter:blur(34px) saturate(1.35);opacity:.34;transform:scale(1.08)}.booking-showcase:after{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 48%,transparent 25%,#170e12 76%)}.booking-live-photo{position:relative;margin:0 auto;max-width:920px;padding:18px;background:#2a121a;border:1px solid #d5ab6870;box-shadow:0 25px 70px #000b,0 0 42px #a81f4855}.booking-live-photo:before{content:'';position:absolute;inset:-14px;pointer-events:none;border:2px solid #6f4b2c;background:radial-gradient(circle,#ffe6a7 0 3px,#d79738 4px 5px,transparent 6px) top left/32px 16px repeat-x,radial-gradient(circle,#ffe6a7 0 3px,#d79738 4px 5px,transparent 6px) bottom left/32px 16px repeat-x,radial-gradient(circle,#ffe6a7 0 3px,#d79738 4px 5px,transparent 6px) top left/16px 32px repeat-y,radial-gradient(circle,#ffe6a7 0 3px,#d79738 4px 5px,transparent 6px) top right/16px 32px repeat-y;filter:drop-shadow(0 0 8px #f2b94eaa);animation:marquee-glow 4.8s ease-in-out 1}.booking-live-photo img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}.booking-live-photo figcaption{position:absolute;left:35px;bottom:35px;z-index:4;margin:0;color:#fff2dc;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(22px,3vw,38px);text-shadow:0 2px 16px #000,0 0 25px #8b0d35}.stage-blinds{display:none;position:absolute;inset:18px;z-index:5;grid-template-columns:repeat(8,1fr);perspective:900px;pointer-events:none}.stage-blinds span{background:linear-gradient(90deg,#240912,#6d1930 48%,#240912);border-right:1px solid #d5ab6845;transform:rotateY(0);transition:transform .95s cubic-bezier(.64,0,.28,1),opacity .8s ease;transition-delay:calc(var(--blind-index,0) * 55ms)}.stage-blinds span:nth-child(1){--blind-index:0;transform-origin:left}.stage-blinds span:nth-child(2){--blind-index:1;transform-origin:right}.stage-blinds span:nth-child(3){--blind-index:2;transform-origin:left}.stage-blinds span:nth-child(4){--blind-index:3;transform-origin:right}.stage-blinds span:nth-child(5){--blind-index:4;transform-origin:left}.stage-blinds span:nth-child(6){--blind-index:5;transform-origin:right}.stage-blinds span:nth-child(7){--blind-index:6;transform-origin:left}.stage-blinds span:nth-child(8){--blind-index:7;transform-origin:right}.booking-showcase.is-revealed .stage-blinds span{transform:rotateY(88deg);opacity:0}.stage-haze{position:absolute;z-index:3;width:55%;height:55%;border-radius:50%;filter:blur(28px);opacity:.16;pointer-events:none}.haze-one{left:-15%;bottom:-22%;background:#e51f4f;animation:haze-drift-one 4s ease-in-out 1 alternate}.haze-two{right:-18%;top:-20%;background:#563cff;animation:haze-drift-two 4s ease-in-out 1 alternate}.meet-band-photo{width:min(100%,360px)!important;max-height:none!important;margin:28px 0 34px!important;object-fit:contain!important;mix-blend-mode:screen;filter:drop-shadow(0 20px 35px #000a) saturate(1.06);-webkit-mask-image:radial-gradient(ellipse 72% 76% at 50% 45%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 72% 76% at 50% 45%,#000 62%,transparent 100%)}@keyframes marquee-glow{0%,100%{opacity:.82;filter:drop-shadow(0 0 6px #f2b94e88)}50%{opacity:1;filter:drop-shadow(0 0 12px #f2b94ecc)}}@keyframes haze-drift-one{to{transform:translate(32%, -18%) scale(1.15)}}@keyframes haze-drift-two{to{transform:translate(-28%, 20%) scale(.9)}}@media(max-width:650px){.booking-showcase{padding:12px 22px 32px;margin-bottom:10px}.booking-live-photo{padding:8px}.booking-live-photo:before{inset:-9px;background-size:24px 12px,24px 12px,12px 24px,12px 24px}.booking-live-photo figcaption{left:18px;bottom:18px;font-size:20px}.stage-blinds{inset:8px}.stage-haze{display:none}.meet-band-photo{width:min(100%,310px)!important;margin-inline:auto!important}}
-@media(prefers-reduced-motion:reduce){.booking-live-photo:before,.stage-haze{animation:none}.stage-blinds{display:none}}
+/* Quiet photographic presentation: no marquee or curtain animation. */
+.booking-showcase{max-width:1120px;margin:0 auto 40px;padding:0 6% 20px}
+.booking-live-photo{margin:0 auto;max-width:920px;border:1px solid var(--line);background:#170e1eee;box-shadow:0 24px 60px #0005}
+.booking-live-photo img{width:100%;height:auto;display:block}
+.booking-live-photo figcaption{padding:17px 22px;color:var(--muted);font-size:13px;letter-spacing:.3px;border-top:1px solid var(--line)}
+.meet-band-photo{width:min(100%,360px)!important;max-height:none!important;margin:28px 0 34px!important;object-fit:contain!important;filter:drop-shadow(0 18px 28px #0005);-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent)}
+@media(max-width:650px){.booking-showcase{margin-bottom:15px}.booking-live-photo figcaption{padding:14px 16px;font-size:12px}.meet-band-photo{width:min(100%,310px)!important;margin-inline:auto!important}}
 
-/* Enhancement-only curtains: the photograph stays visible without JavaScript. */
-.booking-showcase.is-enhanced .stage-blinds{display:grid}
 :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .booking-grid>*{min-width:0}.contact-card textarea{resize:vertical}
 .contact-card input,.contact-card select{min-height:44px}
 button:disabled{opacity:.65;cursor:default}
 footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
 .bundle-picker select{min-width:0;max-width:100%}
-@media(prefers-reduced-motion:reduce){.booking-showcase.is-enhanced .stage-blinds{display:none}*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
 
 .contact-card input,.contact-card select,.contact-card textarea{font-size:16px;border-color:#94757e}
+
+/* Inner pages share the home stage, with static red and amber light. */
+.inner-page main{position:relative;isolation:isolate;background:transparent}
+.inner-page main::before{content:'';position:absolute;inset:0 0 auto;height:900px;z-index:-2;pointer-events:none;background:linear-gradient(180deg,#170e1255 0%,#170e1299 45%,var(--ink) 95%),url('stage.webp') center top/cover no-repeat}
+.inner-page main::after{content:'';position:absolute;inset:0 0 auto;height:1000px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 0% 8%,#ba163b40,transparent 55%),radial-gradient(ellipse at 100% 12%,#e7af5030,transparent 48%)}
+.inner-page .page-heading,.inner-page .calendar-heading{background:none;padding-top:64px;padding-bottom:40px;text-shadow:0 2px 18px #0008}
+.inner-page .page-heading h1,.inner-page .calendar-heading h1{font-size:clamp(56px,7vw,96px);letter-spacing:-1.8px;margin-bottom:20px}
+.inner-page .page-heading .lead,.inner-page .calendar-heading .lead{max-width:720px;font-size:clamp(25px,3vw,34px)}
+.inner-page .shop-notice{color:var(--cream);max-width:62ch}
+.inner-page .product,.inner-page .contact-card,.inner-page .press-card{background:linear-gradient(145deg,#29191ff5,#1c1217fa);box-shadow:0 14px 35px #0002}
+.inner-page .product-art{background:radial-gradient(ellipse at 50% 35%,#59433090,#21171e 80%)}
+.inner-page .media-video{box-shadow:0 24px 60px #0006;margin-top:0}
+.inner-page .bio-story{max-width:68ch}
+.inner-page .bio-story p{line-height:1.8}
+.inner-page .bio-story p:first-child{line-height:1.6}
+.inner-page .stages{background:linear-gradient(90deg,#64152a20,transparent)}
+.inner-page .calendar-frame{position:relative;isolation:isolate}
+.inner-page .calendar-frame::before{content:'';position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(55deg,transparent 0 17px,#080407 18px 21px,transparent 22px 38px),repeating-linear-gradient(-55deg,transparent 0 17px,#080407 18px 21px,transparent 22px 38px),linear-gradient(110deg,#a51436b8,#6d1024bb),url('art/calendar-stage.webp') center/cover no-repeat;pointer-events:none}
+.inner-page .calendar-panel{position:relative}
+.inner-page .calendar-frame{background-color:#6d1024}
+.inner-page .mailing-signup{padding-inline:max(6%,calc((100% - 1250px)/2));gap:48px}
+.inner-page .mailing-signup h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:40px}
+@media(max-width:650px){
+ .inner-page main::before{height:680px;background-position:center top}
+ .inner-page main::after{height:720px}
+ .inner-page .page-heading,.inner-page .calendar-heading{padding-top:42px;padding-bottom:30px}
+ .inner-page .page-heading h1,.inner-page .calendar-heading h1{font-size:clamp(52px,13vw,76px)}
+ .inner-page .mailing-signup{gap:22px}
+ .inner-page .calendar-frame::before{inset:0}
+}
+
+/* A single gentle entrance and quiet gallery lighting for the booking photo. */
+.booking-live-photo{animation:booking-photo-arrive 1s ease-out both;box-shadow:0 24px 60px #0005,0 0 45px #d5ab6810;transition:box-shadow .45s ease}
+@keyframes booking-photo-arrive{from{opacity:.82;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(hover:hover){.booking-live-photo:hover{box-shadow:0 28px 65px #0006,0 0 50px #d5ab681a}}
