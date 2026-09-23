@@ -108,10 +108,7 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
 .inner-page .bio-story p{line-height:1.8}
 .inner-page .bio-story p:first-child{line-height:1.6}
 .inner-page .stages{background:linear-gradient(90deg,#64152a20,transparent)}
-.inner-page .calendar-frame{position:relative;isolation:isolate}
-.inner-page .calendar-frame::before{content:'';position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(55deg,transparent 0 17px,#080407 18px 21px,transparent 22px 38px),repeating-linear-gradient(-55deg,transparent 0 17px,#080407 18px 21px,transparent 22px 38px),linear-gradient(110deg,#a51436b8,#6d1024bb),url('art/calendar-stage.webp') center/cover no-repeat;pointer-events:none}
 .inner-page .calendar-panel{position:relative}
-.inner-page .calendar-frame{background-color:#6d1024}
 .inner-page .mailing-signup{padding-inline:max(6%,calc((100% - 1250px)/2));gap:48px}
 .inner-page .mailing-signup h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:40px}
 @media(max-width:650px){
@@ -120,11 +117,86 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
  .inner-page .page-heading,.inner-page .calendar-heading{padding-top:42px;padding-bottom:30px}
  .inner-page .page-heading h1,.inner-page .calendar-heading h1{font-size:clamp(52px,13vw,76px)}
  .inner-page .mailing-signup{gap:22px}
- .inner-page .calendar-frame::before{inset:0}
-}
+ }
 
 /* A single gentle entrance and quiet gallery lighting for the booking photo. */
 .booking-live-photo{animation:booking-photo-arrive 1s ease-out both;box-shadow:0 24px 60px #0005,0 0 45px #d5ab6810;transition:box-shadow .45s ease}
 @keyframes booking-photo-arrive{from{opacity:.82;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @media(hover:hover){.booking-live-photo:hover{box-shadow:0 28px 65px #0006,0 0 50px #d5ab681a}}
 .booking-summary{max-width:60ch;color:var(--cream)}
+
+/* A single champagne pass, scoped to the two selected text treatments. */
+.champagne-spotlight .spotlight-ink{--spotlight-base:var(--cream);color:var(--spotlight-base)}
+.champagne-spotlight em.spotlight-ink,.eyebrow.champagne-spotlight .spotlight-ink{--spotlight-base:var(--gold)}
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+ .champagne-spotlight.is-spotlit .spotlight-ink{background-image:linear-gradient(110deg,var(--spotlight-base) 0%,var(--spotlight-base) 43%,#e7bdad 47%,#e9ce98 49%,#fff8e9 50%,#f3dfb6 52%,var(--spotlight-base) 57%,var(--spotlight-base) 100%);background-size:300% 100%;background-position:100% 50%;background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:champagne-text-pass 1800ms ease-in-out 1}
+}
+@keyframes champagne-text-pass{from{background-position:100% 50%}to{background-position:0% 50%}}
+@media(prefers-reduced-motion:reduce),(forced-colors:active){
+ .champagne-spotlight .spotlight-ink,.champagne-spotlight.is-spotlit .spotlight-ink{animation:none!important;background:none;color:var(--spotlight-base);-webkit-text-fill-color:currentColor}
+}
+
+
+/* The growing mask reveals and retains light; it never rotates the artwork. */
+@property --perimeter-reveal{syntax:'<angle>';inherits:true;initial-value:360deg}
+.champagne-showcase .booking-live-photo{animation:none;transition:none;border:0;background:#100c10;box-shadow:none;padding:14px 14px 0}
+.champagne-photo-frame{--perimeter-reveal:360deg;position:relative;isolation:isolate;padding:0;background:#100c10;overflow:visible}
+.champagne-photo-frame img{position:relative;z-index:2;opacity:1}
+.champagne-photo-frame::before,.champagne-photo-frame::after{content:'';position:absolute;pointer-events:none;mask-image:conic-gradient(from 0deg,#000 0deg var(--perimeter-reveal),transparent var(--perimeter-reveal) 360deg);-webkit-mask-image:conic-gradient(from 0deg,#000 0deg var(--perimeter-reveal),transparent var(--perimeter-reveal) 360deg)}
+.champagne-photo-frame::before {
+  inset: -4px;
+  z-index: 1;
+  box-shadow:
+    inset 0 0 9px 3px #fff8e8,
+    0 0 8px 2px #f4d39a;
+  filter: blur(2px);
+}
+
+.champagne-photo-frame::after {
+  inset: -30px;
+  z-index: 0;
+  background:
+    linear-gradient(#ffe7b0, #ffe7b0) center 30px / calc(100% - 60px) 4px no-repeat,
+    linear-gradient(#ffe7b0, #ffe7b0) center calc(100% - 30px) / calc(100% - 60px) 4px no-repeat,
+    linear-gradient(#ffe7b0, #ffe7b0) 30px center / 4px calc(100% - 60px) no-repeat,
+    linear-gradient(#ffe7b0, #ffe7b0) calc(100% - 30px) center / 4px calc(100% - 60px) no-repeat;
+  filter:
+    blur(14px)
+    drop-shadow(0 0 18px #b86bc0)
+    drop-shadow(0 0 30px #d5ab68);
+  opacity: 1;
+}
+.champagne-showcase .booking-live-photo figcaption{position:relative;z-index:3;border:0;padding:23px 8px 18px;background:#100c10;margin-top:20px}
+.champagne-showcase.is-entering .champagne-photo-frame{animation:champagne-perimeter-fill 8s linear both}
+.champagne-showcase.is-entering .champagne-photo-frame img{animation:showcase-photo-light 2.8s ease-out both}
+@keyframes champagne-perimeter-fill{from{--perimeter-reveal:0deg}to{--perimeter-reveal:360deg}}
+@keyframes showcase-photo-light{from{opacity:.35}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.champagne-showcase.is-entering .champagne-photo-frame,.champagne-showcase.is-entering .champagne-photo-frame img{animation:none!important;--perimeter-reveal:360deg;opacity:1}}
+
+
+/* Shows: stationary fishnet with a single diffused champagne/red highlight. */
+/* Fixed repeat dimensions prevent mesh phase changes when the widget grows.
+   Each tile spans one 38px diagonal period at +/-55 degrees. */
+.calendar-page .calendar-frame{position:relative;isolation:isolate;overflow:hidden;background-size:46.389434px 66.250978px,46.389434px 66.250978px,auto;background-position:0 0,0 0,0 0;background-repeat:repeat,repeat,no-repeat}
+.calendar-page .calendar-frame::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 18% 0%,#ffe9bd40 0%,#e23c5820 28%,transparent 65%)}
+.calendar-page .calendar-panel{position:relative;z-index:1}
+
+/* A separate light follows the perimeter; the fishnet background never moves. */
+.calendar-page .calendar-frame::before{content:'';position:absolute;top:0;left:0;width:150px;height:150px;pointer-events:none;z-index:0;background:radial-gradient(circle,#ffe9bd99 0%,#d5ab6855 25%,transparent 70%);offset-path:inset(0 round 28px);offset-anchor:center;offset-rotate:0deg;animation:calendar-perimeter-light 18s linear infinite}
+@keyframes calendar-perimeter-light{from{offset-distance:0%}to{offset-distance:100%}}
+@media(max-width:650px){.calendar-page .calendar-frame::before{width:95px;height:95px;offset-path:inset(0 round 12px)}}
+@media(prefers-reduced-motion:reduce){.calendar-page .calendar-frame::before{animation:none!important;offset-distance:12%}}
+
+/* Homepage-only haze: the photograph and its crop remain stationary. */
+.hero-performance .home-haze-photo{overflow:hidden;isolation:isolate}
+.hero-performance .home-haze-photo::after{content:'';position:absolute;inset:-8% auto -8% 0;width:75%;pointer-events:none;z-index:2;background:radial-gradient(ellipse at 50% 46%,#fff5dfdd 0%,#ead5b688 24%,#96759840 48%,transparent 74%);filter:blur(12px);opacity:0;transform:translateX(-115%);animation:home-stage-haze 11s linear infinite}
+@keyframes home-stage-haze{0%{transform:translateX(-115%);opacity:0}18%{opacity:.22}48%{opacity:.32}78%{opacity:.18}92%,100%{transform:translateX(170%);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hero-performance .home-haze-photo::after{animation:none!important;opacity:0}}
+
+/* Merch-only ambient wash: broad gradient falloff needs no costly blur filter. */
+.merch-ambient-page main{overflow:clip}
+.merch-ambient-page main>section{position:relative;z-index:1}
+.merch-ambient-light{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.merch-ambient-light::before{content:'';position:absolute;inset:0 auto 0 0;width:100%;pointer-events:none;background:radial-gradient(ellipse at 50% 18%,#fff3d5b3 0%,#e8c58c70 16%,#906b9433 38%,transparent 65%),radial-gradient(ellipse at 50% 78%,#f4ddad66 0%,#906b942b 28%,transparent 60%);opacity:0;transform:translateX(-90%);animation:merch-ambient-wash 18s linear infinite}
+@keyframes merch-ambient-wash{0%{transform:translateX(-90%);opacity:0}18%{opacity:.3}50%{opacity:.4}80%{opacity:.25}95%,100%{transform:translateX(90%);opacity:0}}
+@media(prefers-reduced-motion:reduce){.merch-ambient-light::before{animation:none!important;transform:none;opacity:.16}}
