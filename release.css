@@ -200,3 +200,9 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
 .merch-ambient-light::before{content:'';position:absolute;inset:0 auto 0 0;width:100%;pointer-events:none;background:radial-gradient(ellipse at 50% 18%,#fff3d5b3 0%,#e8c58c70 16%,#906b9433 38%,transparent 65%),radial-gradient(ellipse at 50% 78%,#f4ddad66 0%,#906b942b 28%,transparent 60%);opacity:0;transform:translateX(-90%);animation:merch-ambient-wash 18s linear infinite}
 @keyframes merch-ambient-wash{0%{transform:translateX(-90%);opacity:0}18%{opacity:.3}50%{opacity:.4}80%{opacity:.25}95%,100%{transform:translateX(90%);opacity:0}}
 @media(prefers-reduced-motion:reduce){.merch-ambient-light::before{animation:none!important;transform:none;opacity:.16}}
+
+/* Bandsintown Upcoming / Past labels */
+.shows-widget .bit-widget .bit-event-list-title,
+.shows-widget .bit-widget .bit-clickable-nav-link {
+  font-size: 20px !important;
+}
