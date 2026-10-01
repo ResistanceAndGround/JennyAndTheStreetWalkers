@@ -77,11 +77,11 @@ footer{display:flex;align-items:center;flex-wrap:wrap;gap:25px;padding:30px 5.5%
 
 /* Quiet photographic presentation: no marquee or curtain animation. */
 .booking-showcase{max-width:1120px;margin:0 auto 40px;padding:0 6% 20px}
-.booking-live-photo{margin:0 auto;max-width:920px;border:1px solid var(--line);background:#170e1eee;box-shadow:0 24px 60px #0005}
+.booking-live-photo{margin:0 auto;max-width:920px;border:0;background:transparent;padding:0;box-shadow:none}
 .booking-live-photo img{width:100%;height:auto;display:block}
-.booking-live-photo figcaption{padding:17px 22px;color:var(--muted);font-size:13px;letter-spacing:.3px;border-top:1px solid var(--line)}
-.meet-band-photo{width:min(100%,360px)!important;max-height:none!important;margin:28px 0 34px!important;object-fit:contain!important;filter:drop-shadow(0 18px 28px #0005);-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent)}
-@media(max-width:650px){.booking-showcase{margin-bottom:15px}.booking-live-photo figcaption{padding:14px 16px;font-size:12px}.meet-band-photo{width:min(100%,310px)!important;margin-inline:auto!important}}
+.booking-live-photo figcaption{padding:20px 0 18px;color:var(--muted);font-size:13px;letter-spacing:.3px}
+.meet-band-photo{width:min(100%,330px)!important;max-height:none!important;margin:28px 0 34px!important;object-fit:contain!important;filter:drop-shadow(0 18px 28px #0005);-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent)}
+@media(max-width:650px){.booking-showcase{margin-bottom:15px}.booking-live-photo figcaption{padding:14px 16px;font-size:12px}.meet-band-photo{width:min(100%,300px)!important;margin-inline:auto!important}}
 
 :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .booking-grid>*{min-width:0}.contact-card textarea{resize:vertical}
@@ -120,9 +120,6 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
  }
 
 /* A single gentle entrance and quiet gallery lighting for the booking photo. */
-.booking-live-photo{animation:booking-photo-arrive 1s ease-out both;box-shadow:0 24px 60px #0005,0 0 45px #d5ab6810;transition:box-shadow .45s ease}
-@keyframes booking-photo-arrive{from{opacity:.82;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-@media(hover:hover){.booking-live-photo:hover{box-shadow:0 28px 65px #0006,0 0 50px #d5ab681a}}
 .booking-summary{max-width:60ch;color:var(--cream)}
 
 /* A single champagne pass, scoped to the two selected text treatments. */
@@ -137,42 +134,13 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
 }
 
 
-/* The growing mask reveals and retains light; it never rotates the artwork. */
-@property --perimeter-reveal{syntax:'<angle>';inherits:true;initial-value:360deg}
-.champagne-showcase .booking-live-photo{animation:none;transition:none;border:0;background:#100c10;box-shadow:none;padding:14px 14px 0}
-.champagne-photo-frame{--perimeter-reveal:360deg;position:relative;isolation:isolate;padding:0;background:#100c10;overflow:visible}
-.champagne-photo-frame img{position:relative;z-index:2;opacity:1}
-.champagne-photo-frame::before,.champagne-photo-frame::after{content:'';position:absolute;pointer-events:none;mask-image:conic-gradient(from 0deg,#000 0deg var(--perimeter-reveal),transparent var(--perimeter-reveal) 360deg);-webkit-mask-image:conic-gradient(from 0deg,#000 0deg var(--perimeter-reveal),transparent var(--perimeter-reveal) 360deg)}
-.champagne-photo-frame::before {
-  inset: -4px;
-  z-index: 1;
-  box-shadow:
-    inset 0 0 9px 3px #fff8e8,
-    0 0 8px 2px #f4d39a;
-  filter: blur(2px);
-}
-
-.champagne-photo-frame::after {
-  inset: -30px;
-  z-index: 0;
-  background:
-    linear-gradient(#ffe7b0, #ffe7b0) center 30px / calc(100% - 60px) 4px no-repeat,
-    linear-gradient(#ffe7b0, #ffe7b0) center calc(100% - 30px) / calc(100% - 60px) 4px no-repeat,
-    linear-gradient(#ffe7b0, #ffe7b0) 30px center / 4px calc(100% - 60px) no-repeat,
-    linear-gradient(#ffe7b0, #ffe7b0) calc(100% - 30px) center / 4px calc(100% - 60px) no-repeat;
-  filter:
-    blur(14px)
-    drop-shadow(0 0 18px #b86bc0)
-    drop-shadow(0 0 30px #d5ab68);
-  opacity: 1;
-}
-.champagne-showcase .booking-live-photo figcaption{position:relative;z-index:3;border:0;padding:23px 8px 18px;background:#100c10;margin-top:20px}
-.champagne-showcase.is-entering .champagne-photo-frame{animation:champagne-perimeter-fill 8s linear both}
-.champagne-showcase.is-entering .champagne-photo-frame img{animation:showcase-photo-light 2.8s ease-out both}
-@keyframes champagne-perimeter-fill{from{--perimeter-reveal:0deg}to{--perimeter-reveal:360deg}}
-@keyframes showcase-photo-light{from{opacity:.35}to{opacity:1}}
-@media(prefers-reduced-motion:reduce){.champagne-showcase.is-entering .champagne-photo-frame,.champagne-showcase.is-entering .champagne-photo-frame img{animation:none!important;--perimeter-reveal:360deg;opacity:1}}
-
+/* Booking: a still photograph with a restrained, independent champagne edge. */
+.champagne-photo-frame{position:relative;isolation:isolate;background:transparent;overflow:visible}
+.champagne-photo-frame img{position:relative;z-index:1;width:100%;height:auto;opacity:1}
+.champagne-photo-frame::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:0 0 8px 1px #f3dfb652,0 0 20px 3px #d5ab6833;opacity:.55;animation:booking-champagne-breathe 13s ease-in-out infinite}
+.champagne-photo-frame::after{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(100deg,transparent 32%,#f0d7ad08 40%,#fff1d83b 50%,#f0d7ad08 60%,transparent 68%);background-size:300% 100%;background-repeat:no-repeat;opacity:0;animation:home-photo-champagne 14s linear both}
+@keyframes booking-champagne-breathe{0%,100%{opacity:.55}50%{opacity:.85}}
+@media(prefers-reduced-motion:reduce){.champagne-photo-frame::before{animation:none!important;opacity:.7}.champagne-photo-frame::after{animation:none!important;opacity:0}}
 
 /* Shows: stationary fishnet with a single diffused champagne/red highlight. */
 /* Fixed repeat dimensions prevent mesh phase changes when the widget grows.
@@ -187,11 +155,26 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
 @media(max-width:650px){.calendar-page .calendar-frame::before{width:95px;height:95px;offset-path:inset(0 round 12px)}}
 @media(prefers-reduced-motion:reduce){.calendar-page .calendar-frame::before{animation:none!important;offset-distance:12%}}
 
-/* Homepage-only haze: the photograph and its crop remain stationary. */
-.hero-performance .home-haze-photo{overflow:hidden;isolation:isolate}
-.hero-performance .home-haze-photo::after{content:'';position:absolute;inset:-8% auto -8% 0;width:75%;pointer-events:none;z-index:2;background:radial-gradient(ellipse at 50% 46%,#fff5dfdd 0%,#ead5b688 24%,#96759840 48%,transparent 74%);filter:blur(12px);opacity:0;transform:translateX(-115%);animation:home-stage-haze 11s linear infinite}
-@keyframes home-stage-haze{0%{transform:translateX(-115%);opacity:0}18%{opacity:.22}48%{opacity:.32}78%{opacity:.18}92%,100%{transform:translateX(170%);opacity:0}}
-@media(prefers-reduced-motion:reduce){.hero-performance .home-haze-photo::after{animation:none!important;opacity:0}}
+/* One stable artwork frame; champagne illumination is independent of slide changes. */
+.home-slideshow{min-width:0;width:100%;align-self:center;position:relative}
+.home-slideshow-frame{position:relative;isolation:isolate;aspect-ratio:4/3;background:transparent;border:0;padding:0;box-shadow:none;overflow:visible}
+.home-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:visible;opacity:0;transition:opacity 1.5s ease-in-out;pointer-events:none}
+.home-slide.is-active{opacity:1;z-index:1}
+.home-slide img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;display:block;filter:drop-shadow(0 0 6px #fff3d52e) drop-shadow(0 0 15px #d5ab6826)}
+.home-slideshow-controls{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding-top:16px}
+.home-slideshow-controls[hidden]{display:none}
+.home-slideshow-controls button{font:inherit;font-size:13px;color:var(--cream);background:#170e12;border:1px solid var(--line);min-width:44px;min-height:44px;padding:8px 12px;cursor:pointer}
+.home-slideshow-controls button:hover{border-color:var(--gold);background:#291b20}
+.home-slideshow-controls button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.home-slideshow-controls button:disabled{opacity:.65;cursor:default}
+.slide-count{font-size:12px;color:var(--muted);min-width:36px;text-align:center;font-variant-numeric:tabular-nums}
+.slideshow-announcement{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* Each overlay matches its image bounds, excluding transparent letterboxing. */
+.home-slide::after{content:'';position:absolute;left:var(--art-left,0px);top:var(--art-top,0px);width:var(--art-width,0px);height:var(--art-height,0px);pointer-events:none;background:linear-gradient(100deg,transparent 32%,#f0d7ad08 40%,#fff1d83b 50%,#f0d7ad08 60%,transparent 68%);background-size:300% 100%;background-repeat:no-repeat;opacity:0}
+.home-slide.is-active::after{animation:home-photo-champagne 14s linear both}
+@keyframes home-photo-champagne{0%{background-position:100% 50%;opacity:0}12%{opacity:1}88%{opacity:1}100%{background-position:0% 50%;opacity:0}}
+@media(max-width:650px){.home-slideshow-frame{aspect-ratio:4/5}.home-slideshow-controls{gap:7px}}
+@media(prefers-reduced-motion:reduce){.home-slide{transition:none}.home-slide::after{animation:none!important;opacity:0}}
 
 /* Merch-only ambient wash: broad gradient falloff needs no costly blur filter. */
 .merch-ambient-page main{overflow:clip}
