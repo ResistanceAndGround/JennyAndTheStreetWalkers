@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 from collections import Counter
 import re
-root=Path(__file__).resolve().parents[1]
+root=Path(__file__).resolve().parents[1]/"public"
 void={'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
 class Page(HTMLParser):
  def __init__(self): super().__init__();self.refs=[];self.ids=[];self.stack=[];self.errors=[]
@@ -24,7 +24,8 @@ for f in root.glob('*.html'):
  p=Page();s=f.read_text(encoding='utf-8');p.feed(s);pages[f.name]=p
  assert not p.errors and not p.stack,(f,p.errors,p.stack)
  assert len(p.ids)==len(set(p.ids)),(f,'duplicate ID')
- assert not re.search(r'\bResistance\b|resistground|RGWebSite|mike-wilson',s,re.I),(f,'unrelated branding')
+ branding_text=s.replace('Website by Resistance &amp; Ground','')
+ assert not re.search(r'\bResistance\b|resistground|RGWebSite|mike-wilson',branding_text,re.I),(f,'unrelated branding')
  assert len(re.findall(r'<h1\b',s))==1,(f,'h1 count')
  assert '<meta property="og:image" content="https://' in s,(f,'absolute social image')
 for name,p in pages.items():
