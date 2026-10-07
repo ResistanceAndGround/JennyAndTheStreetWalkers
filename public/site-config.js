@@ -1,3 +1,7 @@
-// Enable only AFTER this independent site's Netlify Forms have been registered.
-// GitHub Pages and local previews never send forms.
-window.JENNY_SITE = Object.freeze({netlifyFormsEnabled: false});
+// Client-owned Formspree endpoints; HTML actions remain the submission source.
+window.JENNY_SITE = Object.freeze({
+  formEndpoints: Object.freeze([
+    'https://formspree.io/f/mgaoakyn',
+    'https://formspree.io/f/xzederve'
+  ])
+});

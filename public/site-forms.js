@@ -1,26 +1,33 @@
-/* Shared form lifecycle: explicit service configuration, no duplicate requests. */
+/* Shared Formspree lifecycle: validated submissions, no duplicate requests. */
 window.JennyForms = {
   attach(form, label) {
-    if (!form) return;
+    if (!form || form.dataset.formAttached) return;
+    form.dataset.formAttached = 'true';
     const status = form.querySelector('[role="status"]');
     const button = form.querySelector('button[type="submit"]');
-    const preview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) || location.hostname.endsWith('.github.io') || location.protocol === 'file:';
-    const production = location.origin === 'https://www.jennyandthestreetwalkers.com';
-    const enabled = production && !preview && window.JENNY_SITE?.netlifyFormsEnabled === true;
-    // Preview controls remain testable, but never send personal data.
-    button.disabled = false;
-    status.textContent = enabled ? '' : 'Preview only — online ' + label + ' is not enabled yet. Nothing will be sent.';
     let pending = false;
     form.addEventListener('submit', async event => {
       event.preventDefault();
       if (pending || !form.reportValidity()) return;
-      if (!enabled) { status.textContent = 'Preview only — your information has not been sent.'; return; }
+      const endpoint = form.action;
+      if (!window.JENNY_SITE?.formEndpoints.includes(endpoint)) {
+        status.textContent = 'This form is temporarily unavailable. Your entries have not been sent.';
+        return;
+      }
+      if (form.elements.namedItem('_gotcha')?.value) {
+        status.textContent = 'We could not send your ' + label + '. Please try again.';
+        return;
+      }
       pending = true;
       button.disabled = true;
       form.setAttribute('aria-busy', 'true');
       status.textContent = 'Sending…';
       try {
-        const response = await fetch(location.pathname, {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(new FormData(form)).toString()});
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {'Accept': 'application/json'},
+          body: new FormData(form)
+        });
         if (!response.ok) throw new Error('Submission failed');
         form.reset();
         status.textContent = 'Thank you! Your ' + label + ' has been received.';
