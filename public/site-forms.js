@@ -5,7 +5,8 @@ window.JennyForms = {
     const status = form.querySelector('[role="status"]');
     const button = form.querySelector('button[type="submit"]');
     const preview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) || location.hostname.endsWith('.github.io') || location.protocol === 'file:';
-    const enabled = !preview && window.JENNY_SITE?.netlifyFormsEnabled === true;
+    const production = location.origin === 'https://www.jennyandthestreetwalkers.com';
+    const enabled = production && !preview && window.JENNY_SITE?.netlifyFormsEnabled === true;
     // Preview controls remain testable, but never send personal data.
     button.disabled = false;
     status.textContent = enabled ? '' : 'Preview only — online ' + label + ' is not enabled yet. Nothing will be sent.';

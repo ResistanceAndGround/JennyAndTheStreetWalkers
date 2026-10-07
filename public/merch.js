@@ -31,8 +31,17 @@
     update();
   });
   if (available) document.getElementById('shop-notice').textContent = 'Shop securely with Square. Choose your options at checkout, where current availability, delivery details and your final total are shown.';
+  const bundleChoice = document.querySelector('#bundle-choice');
+  const bundleCheckout = document.querySelector('#bundle-checkout');
+  bundleChoice?.addEventListener('change', () => {
+    if (!bundleCheckout) return;
+    const url = checkoutUrl(bundleChoice.value);
+    bundleCheckout.hidden = !url;
+    if (url) {
+      bundleCheckout.href = url;
+      bundleCheckout.textContent = 'Shop ' + bundleChoice.selectedOptions[0].textContent.split(' — ')[0] + ' ↗';
+    } else {
+      bundleCheckout.removeAttribute('href');
+    }
+  });
 })();
-
-const bundleChoice=document.querySelector("#bundle-choice");
-const bundleCheckout=document.querySelector("#bundle-checkout");
-bundleChoice?.addEventListener("change",()=>{bundleCheckout.hidden=!bundleChoice.value;if(bundleChoice.value){bundleCheckout.href=bundleChoice.value;bundleCheckout.textContent="Shop "+bundleChoice.selectedOptions[0].textContent.split(" — ")[0]+" ↗";}else bundleCheckout.removeAttribute("href");});

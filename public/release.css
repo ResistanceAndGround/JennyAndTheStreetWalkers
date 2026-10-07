@@ -33,10 +33,10 @@ footer{display:flex;align-items:center;flex-wrap:wrap;gap:25px;padding:30px 5.5%
 .hero-performance h1{font-size:clamp(42px,11vw,64px);margin-bottom:18px}
 .hero-performance .hero-tag{font-size:23px;max-width:330px}
 .hero-performance .actions{margin-top:20px}
-.hero-visuals{display:block;padding-bottom:135px}
+.hero-visuals{display:block;padding-bottom:0}
 .hero-performance .hero-art{position:absolute;right:-4px;bottom:-5px;width:115px}
 .hero-performance .hero-art img{max-height:155px}
-.hero-visuals:after{content:'Roots, dark cabaret & circus noir';display:block;position:absolute;left:0;bottom:40px;max-width:55%;font-family:Georgia,serif;font-size:21px;line-height:1.4;color:var(--gold)}
+
 }
 
 /* Feather the live photograph into the stage rather than framing it. */
@@ -230,3 +230,7 @@ footer a,.text-link{min-height:44px;display:inline-flex;align-items:center}
     background-position: -120% 0;
   }
 }
+
+/* Preserve full desktop wording while keeping mobile sentences complete. */
+.mobile-copy{display:none}
+@media(max-width:650px){.desktop-copy{display:none}.mobile-copy{display:inline}}

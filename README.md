@@ -1,19 +1,21 @@
 # Jenny & The StreetWalkers
 
-Independent static website. Source of truth: this repository and origin/main.
+Independent static website. Active deployable source: `public/`, configured by `wrangler.jsonc` for Cloudflare Worker `jennyandthestreetwalkers`. Root HTML/CSS/JS are legacy copies retained while the old GitHub Pages publication is unresolved. Edit and validate `public/` only.
+
+Current launch instructions: PRODUCTION-URL-LAUNCH.md. Current review: SECURITY-REVIEW.md. Forms remain disabled and contain no Formspree endpoints. Do not enable the legacy Netlify flag on Cloudflare; a supported form-service integration is still required.
 
 ## Development and validation
 
-There is no framework, package manager, dependency installation, compiler, or production build. The root HTML/CSS/JS and referenced assets are the deployable site. Do not run npm install or generate a dist folder.
+There is no framework, package manager, dependency installation, compiler, or production build. The public HTML/CSS/JS and referenced assets are the deployable site. Do not run npm install or generate a dist folder.
 
 With Python 3 installed, from this folder:
 
 ```powershell
 py tools/check_site.py
-py -m http.server 8877 --bind 127.0.0.1
+py -m http.server 8878 --bind 127.0.0.1 --directory public
 ```
 
-Open http://127.0.0.1:8877/ (use a different port if already occupied). Stop the server with Ctrl+C. The static check verifies local references, filename case, anchors, IDs, HTML nesting and image alt attributes. JavaScript syntax can be checked with `node --check` for each JS file. No pre-existing test/lint suite was present.
+Open http://127.0.0.1:8878/ (use a different port if already occupied). Stop the server with Ctrl+C. The static check verifies local references, filename case, anchors, IDs, HTML nesting and image alt attributes. JavaScript syntax can be checked with `node --check` for each JS file. No pre-existing test/lint suite was present.
 
 ## Pages and features
 
@@ -26,7 +28,7 @@ Open http://127.0.0.1:8877/ (use a different port if already occupied). Stop the
 
 Original PNGs and PDFs are retained. WebP files are optimized delivery assets; social-preview.jpg is the band-branded 1200×630 sharing image. Download links retain original PNG/PDF formats.
 
-## Hosting
+## Historical hosting notes (superseded by PRODUCTION-URL-LAUNCH.md)
 
 Existing GitHub Pages preview: https://resistanceandground.github.io/JennyAndTheStreetWalkers/
 
@@ -34,7 +36,7 @@ GitHub reports Pages enabled; all five existing page URLs respond. No local Acti
 
 Netlify later: blank build command, publish directory `.`, branch `main`, no environment variables. netlify.toml is unchanged. No SPA redirect is needed. Do not enable production deployment during cleanup.
 
-## Forms: required launch configuration
+## Historical Netlify form setup (not the current Cloudflare deployment)
 
 site-config.js deliberately sets netlifyFormsEnabled to false. The independent Netlify project has not been verified or configured. Do not assume settings from another website apply here.
 
